@@ -327,6 +327,15 @@ for game in ['air_raid', 'alien', 'amidar', 'assault', 'asterix', 'asteroids', '
         )
 
         register(
+            id='{}Mode1-v0'.format(name),
+            entry_point='gym.envs.atari:AtariEnv',
+            kwargs={'game': game, 'obs_type': obs_type, 'repeat_action_probability': 0.25,
+                    'game_mode': 1},
+            max_episode_steps=10000,
+            nondeterministic=nondeterministic,
+        )
+
+        register(
             id='{}-v4'.format(name),
             entry_point='gym.envs.atari:AtariEnv',
             kwargs={'game': game, 'obs_type': obs_type},

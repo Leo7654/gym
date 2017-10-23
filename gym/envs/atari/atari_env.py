@@ -22,7 +22,7 @@ def to_ram(ale):
 class AtariEnv(gym.Env, utils.EzPickle):
     metadata = {'render.modes': ['human', 'rgb_array']}
 
-    def __init__(self, game='pong', obs_type='ram', frameskip=(2, 5), repeat_action_probability=0.):
+    def __init__(self, game='pong', obs_type='ram', frameskip=(2, 5), game_mode=0, repeat_action_probability=0.):
         """Frameskip should be either a tuple (indicating a random range to
         choose from, with the top value exclude), or an int."""
 
@@ -35,6 +35,7 @@ class AtariEnv(gym.Env, utils.EzPickle):
         self._obs_type = obs_type
         self.frameskip = frameskip
         self.ale = atari_py.ALEInterface()
+        self.ale.setInt('game_mode', game_mode)
         self.viewer = None
 
         # Tune (or disable) ALE's action repeat:
